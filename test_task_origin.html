@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>test</title>
+</head>
+<body>
+  
+	<form name="myForm" action="" onsubmit="return valid();"  method="post">
+		<label for="firstName">First name:</label>
+		<input type="text" name="firstName" id="firstName" placeholder="First name">
+    <div id="errorFname"></div> <br>
+		<label for="lastName">Last name:</label>
+		<input type="text" name="lastName" id="lastName" placeholder="Last name">
+    <div id="errorLname"></div><br>
+		<label>Birthday:</label>
+		<input type="date" id="date" name="date">
+    <div id="errorDate"></div><br>
+		<span id="gender">Gender:</span>
+		<input type="radio" name="state" id="male" value="male">
+		<label for="male">Male</label>
+		<input type="radio" name="state" id="female" value="female">
+		<label for="female">Female</label><br>
+    <div id="errorGender"></div><br>
+		<label for="country">Country:</label>
+		<select name="Country" id="country">
+			<option value="0">--select country--</option>
+			<option value="1">Ukraine</option>
+			<option value="2">USA</option>
+			<option value="3">China</option>
+		</select>
+    <div id="errorCountry"></div><br>
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="Email" placeholder="Email">
+    <div id="errorEmail"></div><br>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" placeholder="Password" >
+    <div id="errorPass"></div><br>
+		<label for="adress">Adress:</label>
+		<input type="text" id="adress" name="Adress" placeholder="Adress">
+    <div id="errorAdress"></div><br>
+		<label for="notes">Notes:</label>
+		<textarea name="Notes" id="notes"></textarea><br><br>
+		<input type="submit"  value="Submit">
+	</form>
+  <script type="text/javascript">
+  		function valid() {
+        var male = document.getElementById("male");
+        var female = document.getElementById("female");
+  			var email = document.getElementById("email");
+  			var firstName = document.getElementById("firstName");
+  			var lastName = document.getElementById("lastName");
+  			var date = document.getElementById("date");
+  			var password = document.getElementById("password");
+  			var adress = document.getElementById("adress");
+  			var regexp = /^[-a-zA-Z0-9._]+@[-a-zA-Z0-9.]+\.[a-zA-Z]{2,6}$/;
+  			var regExp = /[\`\'\"]/;
+        var select = document.getElementById("country");
+        var value = select.value;
+  			
+  			if (regExp.test(firstName.value)) {
+  				firstName.style.border = "1px solid red";
+          errorFname.innerHTML = 'Ivalid character';
+  				return false;
+  			}
+  			else if (regExp.test(lastName.value)) {
+  				lastName.style.border = "1px solid red";
+          errorLname.innerHTML = 'Ivalid character';
+  				return false;
+  			}
+  			else if (regExp.test(adress.value)) {
+  				adress.style.border = "1px solid red";
+          errorAdress.innerHTML = 'Ivalid character';
+  				return false;
+  			}
+
+  			else if(!firstName.value){
+  				firstName.style.border = "1px solid red";
+          errorFname.innerHTML = 'This field is required';
+  				return false;
+  			}
+  			else if(!lastName.value){
+  				lastName.style.border = "1px solid red";
+          errorLname.innerHTML = 'This field is required';
+  				return false;
+  			}
+  			else if(!date.value){
+  				date.style.border = "1px solid red";
+          errorDate.innerHTML = 'This field is required';
+  				return false;
+  			}
+        else if(!male.checked && !female.checked){
+          errorGender.innerHTML = 'Choose your gender';
+          return false;
+        }
+        else if(value == "0"){
+          select.style.border = "1px solid red";
+          errorCountry.innerHTML = 'Choose your country';
+          return false;
+        }
+  			else if(!email.value){
+  				email.style.border = "1px solid red";
+          errorEmail.innerHTML = 'This field is required';
+  				return false;
+  			}
+  			else if (!regexp.test(email.value)){
+  				email.style.border = "1px solid red"
+          errorEmail.innerHTML = 'Email is not valid';
+  				return false;
+  			}
+  			else if(!password.value){
+  				password.style.border = "1px solid red";
+          errorPass.innerHTML = 'This field is required';
+  				return false;
+  			}
+  			else if(!adress.value){
+  				adress.style.border = "1px solid red";
+          errorAdress.innerHTML = 'This field is required';
+  				return false;
+  			}
+  			else
+  				alert("Validation passed");
+  		}
+  </script>
+</body>
+</html>
